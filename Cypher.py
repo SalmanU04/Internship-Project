@@ -103,8 +103,4 @@ if bruteForce == 1:
         x += 1
     else:
         sys.exit
-
-"""
-Now time for keys not in
-"""
         
