@@ -77,7 +77,7 @@ elif ask_key == "N":
     key = 0    
 else:
     print ("Invalid Input")
-    sys.exit
+    sys.exit()
 
 if key == 1 and decode == 1:
     shiftKey = int(input ("What is your key-shift? "))
