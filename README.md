@@ -14,7 +14,7 @@ The Shift Cipher will ask you for a message and a key to either decrypt or encry
 
 The code will constantly ask for inputs, if you put an incorrect input.  
 
-###### BCRYPT ######
+###### BCRYPT PASSWORD HASHER ######
 
 Given an input of a password by a user, the BCRYPT code will apply a Hash and salt on the password
 
