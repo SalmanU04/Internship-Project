@@ -2,9 +2,9 @@
 import sys
 import string
 from typing import no_type_check
-import time
 from typing import final
 import numpy as np
+
 
 """
 Set all variable equal to NOT
@@ -13,6 +13,7 @@ Ask for message
 alphabet set to all letter (upper and lower)
 Brute Force and Key will be determined later
 """
+
 typeOfCipher = int(input("Will you do a Transposition Cipher (0) or a Shift Cipher (1)? "))
 message = input("What is your message: ")
 decodeOrCode = int(input("Do you want to code (0) or decode (1)?"))
