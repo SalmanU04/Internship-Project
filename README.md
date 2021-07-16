@@ -18,4 +18,4 @@ The code will constantly ask for inputs, if you put an incorrect input.
 
 Given an input of a password by a user, the BCRYPT code will apply a Hash and salt on the password
 
-THe code will then check if the hashed password matches the original, and returns the time it took for the process to occur
+The code will then check if the hashed password matches the original, and returns the time it took for the process to occur
