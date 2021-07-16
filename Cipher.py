@@ -257,7 +257,6 @@ elif typeOfCipher == 0:
 if bruteForce == 1:
     x = 1
     print ("We will have to do a Brute Force attack")
-    time.sleep(3)
     while x != 27:
         decrypt_shift (alphabet, x, message, oldMessage)
         x += 1
