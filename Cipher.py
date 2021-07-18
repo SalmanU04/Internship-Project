@@ -1,7 +1,6 @@
 #Coder/Decoder
 import sys
 import string
-from typing import no_type_check
 from typing import final
 import numpy as np
 
@@ -13,6 +12,8 @@ Ask for message
 alphabet set to all letter (upper and lower)
 Brute Force and Key will be determined later
 """
+    
+
 
 typeOfCipher = int(input("Will you do a Transposition Cipher (0) or a Shift Cipher (1)? "))
 message = input("What is your message: ")
@@ -26,7 +27,9 @@ oldMessage = []
 double = 2
 keyCol = ""
 keyRow = ""
-alphabet = string.ascii_letters + "0123456789.,!?"
+alphabet = string.ascii_letters + string.ascii_letters
+#FIX
+#Rotation by Modulus
 
 ##############################################################################################################
 #define Encryption and Decryption Variables for shift
@@ -68,26 +71,38 @@ def decrypt_shift(alphabet, shiftKey, message, oldMessage):
 #Encrypt for a transposition cipher
 
 def encrypt_Trans (mes, keyCol, keyRow):
+    rowOrder = []
 
     #Length of message, column and row is found. 
     mesLen = len(mes)
     col = len(keyCol)
     row = len(keyRow)
-    
-    #sets the row and column both to integers, then uses them to create the sorted order
-    rowOrder = [int(x) for x in str(keyRow)]
-    ogRowOrder = sorted(list(rowOrder))
-    
-    
-    colOrder = [int(x) for x in str(keyCol)]
-    ogColOrder = sorted(list(colOrder))
 
     #checks for double to determine row length...
     if double == 2:
         row = len(keyRow)
+
+        #sets the row and column both to integers, then uses them to create the sorted order
+        rowOrder = [int(x) for x in str(keyRow)]
+        ogRowOrder = sorted(list(rowOrder))
+    
+    
+        colOrder = [int(x) for x in str(keyCol)]
+        ogColOrder = sorted(list(colOrder))
+
     elif double == 1:
         row = int((mesLen/col)+(1-((mesLen%col)/col)))
-        print (row)
+
+        for x in range(row):
+            rowOrder.append(x+1)
+
+        print (rowOrder)
+        ogRowOrder = rowOrder
+    
+    
+        colOrder = [int(x) for x in str(keyCol)]
+        ogColOrder = sorted(list(colOrder))
+        
 
 
     #message is converted to a list, and blank spaces are added to the ends of the list to fill
@@ -97,7 +112,7 @@ def encrypt_Trans (mes, keyCol, keyRow):
     for x, y in enumerate(mesList):
         if y == " ":
             mesList[x] = "_"
-
+    #Replace the "_" with " "
 
     #sets list to a matrix
     mesMat = [mesList[x: x+col] for x in range(0, len(mesList), col)]
@@ -118,9 +133,9 @@ def encrypt_Trans (mes, keyCol, keyRow):
     #newArray takes from the original array in both. 
     
     # 
-    for x in range(len(keyCol)):   
+    for x in range(col):   
         swap_col (mesMat, newArray, ogColOrder[x]-1, colOrder[x]-1)
-    for x in range (len(keyRow)):
+    for x in range (row):
         swap_row (newArray, finalArray, ogRowOrder[x]-1, rowOrder[x]-1)
 
     #This will convert the array into a readable string
@@ -128,25 +143,37 @@ def encrypt_Trans (mes, keyCol, keyRow):
     print (cipher)
 
 def decrypt_Trans (mes, keyCol, keyRow):
+    rowOrder = []
+   
     #Length of message, column and row is found. 
     mesLen = len(mes)
     col = len(keyCol)
     row = len(keyRow)
     
-    #sets the row and column both to integers, then uses them to create the sorted order
-    rowOrder = [int(x) for x in str(keyRow)]
-    ogRowOrder = sorted(list(rowOrder))
-    
-    
-    colOrder = [int(x) for x in str(keyCol)]
-    ogColOrder = sorted(list(colOrder))
 
-    #checks for double to determine row length...
     if double == 2:
         row = len(keyRow)
+
+        #sets the row and column both to integers, then uses them to create the sorted order
+        rowOrder = [int(x) for x in str(keyRow)]
+        ogRowOrder = sorted(list(rowOrder))
+    
+    
+        colOrder = [int(x) for x in str(keyCol)]
+        ogColOrder = sorted(list(colOrder))
+
     elif double == 1:
         row = int((mesLen/col)+(1-((mesLen%col)/col)))
-        print (row)
+
+        for x in range(row):
+            rowOrder.append(x+1)
+
+        print (rowOrder)
+        ogRowOrder = rowOrder
+    
+    
+        colOrder = [int(x) for x in str(keyCol)]
+        ogColOrder = sorted(list(colOrder))
 
 
     #message is converted to a list, and blank spaces are added to the ends of the list to fill
@@ -177,9 +204,9 @@ def decrypt_Trans (mes, keyCol, keyRow):
     #newArray takes from the original array in both. 
     
     # 
-    for x in range(len(keyCol)):   
+    for x in range(col):   
         swap_col (mesMat, newArray, ogColOrder[x]-1, colOrder[x]-1)
-    for x in range (len(keyRow)):
+    for x in range (row):
         swap_row (newArray, finalArray, ogRowOrder[x]-1, rowOrder[x]-1)
 
     #This will convert the array into a readable string
