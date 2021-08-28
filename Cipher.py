@@ -96,7 +96,6 @@ def encrypt_Trans (mes, keyCol, keyRow):
         for x in range(row):
             rowOrder.append(x+1)
 
-        print (rowOrder)
         ogRowOrder = rowOrder
     
     
@@ -132,7 +131,6 @@ def encrypt_Trans (mes, keyCol, keyRow):
         newArray[[start],:] = array[[last],:]
     #newArray takes from the original array in both. 
     
-    # 
     for x in range(col):   
         swap_col (mesMat, newArray, ogColOrder[x]-1, colOrder[x]-1)
     for x in range (row):
@@ -216,7 +214,7 @@ def decrypt_Trans (mes, keyCol, keyRow):
 
 #Determines wheteher to code or decode
 if decodeOrCode == 0:
-        code = 1
+    code = 1
 elif decodeOrCode == 1:
     decode = 1
 else: 
